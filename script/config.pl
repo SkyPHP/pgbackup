@@ -86,4 +86,6 @@ $tables = [
 #   }
 ];
 
+require "_config.pl" if -e "_config.pl";
+
 1;
