@@ -1,3 +1,10 @@
+# !!!!!!!!!!!!!!!!!!!!!!
+# THESE ARE BASE CONFIGS
+#
+# IT IS RECOMENDED YOU PUT CUSTOM CONFIGS IN THE FILE ./_config.pl
+# THIS WILL MAKE IT EASIER TO UPDATE THIS CODE USING GIT
+# !!!!!!!!!!!!!!!!!!!!!!
+
 ##################
 ##COMMON CONFIGS##
 
