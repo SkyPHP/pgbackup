@@ -144,7 +144,15 @@ sub compress_backups{
 
       cmd("mkdir -p \"$compress_path/$db_name/$backup_subdir\" 2>&1");
 
-      my @ls = cmd("ls -1 \"$backup_path/$db_name/$backup_subdir\" 2>&1");
+      #my @ls = cmd("ls -1 \"$compress_path/$db_name/$backup_subdir\" 2>&1");
+
+      my @_ls = <$backup_path/$db_name/$backup_subdir/*>;
+      my @ls;
+
+      echo("Iterating files to compress in $compress_path/$db_name/$backup_subdir");
+
+      push(@ls, (split('/', $_))[-1]) foreach(@_ls);
+
       foreach(@ls){
          $_ = trim($_);
          if($_ =~ $file_name_regexp){
@@ -152,7 +160,7 @@ sub compress_backups{
             unless(-e ($compress_file_path = "$compress_path/$db_name/$backup_subdir/$_" . $compressed_file_extension)){
                echo("Compressing $backup_path/$db_name/$backup_subdir/$_ to $compress_file_path ...");
                #commands are executed with $backup_path working directory
-               cmd("cd $backup_path 2>&1; $compress_cmd \"$compress_file_path\" \"$db_name/$backup_subdir/$_\" 2>&1");
+               cmd("cd \"$backup_path/$db_name/$backup_subdir\" 2>&1; $compress_cmd \"$compress_file_path\" \"$_\" 2>&1");
                echo("Finished compressing $backup_path/$db_name/$backup_subdir/$_ .");
             }else{
                echo("Already compressed $backup_path/$db_name/$backup_subdir/$_ ...");
