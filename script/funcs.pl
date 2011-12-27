@@ -86,6 +86,8 @@ sub delete_old{
 
    my $delete_older_than = get_time(time - ($delete_backups_older_than * 86400), $file_name_time_format); #seconds per day
 
+   echo("Purging files older than $delete_older_than, max purge of $max_purge");
+
    my $full_backup_path = "$backup_path/$db_name/$backup_subdir";
    my $full_compress_path = "$compress_path/$db_name/$backup_subdir";
 
@@ -93,13 +95,18 @@ sub delete_old{
       foreach(($full_backup_path, $full_compress_path)){	
          my $cur_path = $_;
 
-         echo("Purging old $db_name backups at $cur_path/$db_name ...");
+         echo("Purging old $db_name backups at $cur_path ...");
 
-         my @ls = cmd("ls -1 \"$cur_path\" 2>&1");
-         my $count = 0;
+         my @_ls = <$cur_path/*>;
+         my @ls;
  
+         echo("Iterating files to delete in $cur_path");
+ 
+         push(@ls, (split('/', $_))[-1]) foreach(@_ls);
+
+         my $count = 0;
          foreach(@ls){
-            $_ = trim($_);
+         #   echo("file: $_");
 
             $count++ if $_ =~ $file_name_regexp; #so we don't accidentally count non-backups
          }
@@ -109,18 +116,20 @@ sub delete_old{
             next;
          }
 
-         $delete_count = 0;
+         my $delete_count = 0;
 
          foreach(@ls){
             last if $delete_count >= $max_purge;
-            (cmd("rm -rf \"$cur_path/$db_name/$_\" 2>&1"), $delete_count++, echo("deleting $cur_path/$db_name/$_")) if $_ lt $delete_older_than && $_ =~ $file_name_regexp; #the regexp so we don't accidentally delete non-backups
+            next unless $_;
+            (echo("deleting $cur_path/$_"), cmd("rm -rf \"$cur_path/$_\" 2>&1"), $delete_count++, echo("deleted $cur_path/$_")) if $_ lt $delete_older_than && $_ =~ $file_name_regexp; #the regexp so we don't accidentally delete non-backups
          }
 
-         echo("Purge of $cur_path/$db_name complete.");
+         echo("Purge of $delete_count files from $cur_path complete.");
       }
    }else{
       echo("Skipping purge of $db_name...");
    }
+
    
    1;
 }

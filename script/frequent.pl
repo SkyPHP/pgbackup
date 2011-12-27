@@ -22,6 +22,9 @@ require 'funcs.pl';
 # SCRIPT
 ###############
 
+$delete_backups_older_than = $frequent_delete_backups_older_than;
+$max_purge = $frequent_max_purge;
+
 handle_table($_) foreach @$tables;
 
 (delete_old($_, $frequent_file_name_regexp, $frequent_file_name_time_format, $frequent_backup_subdir), compress_backups($_, $frequent_file_name_regexp, $frequent_backup_subdir)) foreach keys %databases;

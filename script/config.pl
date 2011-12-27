@@ -14,8 +14,8 @@ $db_user = "postgres";
 #$db_port; #if needed
 #$db_pass = '***'; #use of this variable is discouraged, .pgpass files are preferred
 
-$delete_backups_older_than = 10; #days, will not delete anything if there is not more than this number of backups
-$max_purge = 3;  #maximum number of deletes before purging is stopped
+$delete_backups_older_than = 7; #days, will not delete anything if there is not more than this number of backups
+$max_purge = 4;  #maximum number of deletes before purging is stopped
 
 $suppress_output = 0; #output will not be printed
 
@@ -66,6 +66,9 @@ $daily_file_name_regexp = /^\d\d\d\d\-\d\d\-\d\d/;
 ##FREQUENT CONFIGS##
 
 #NOTE: $db_pass does not apply to frequent.pl, .pgpass is required
+
+$frequent_delete_backups_older_than = 2; #days
+$frequent_max_purge = 50;
 
 $default_schema_name = 'public';
 
