@@ -144,8 +144,6 @@ sub compress_backups{
 
       cmd("mkdir -p \"$compress_path/$db_name/$backup_subdir\" 2>&1");
 
-      #my @ls = cmd("ls -1 \"$compress_path/$db_name/$backup_subdir\" 2>&1");
-
       my @_ls = <$backup_path/$db_name/$backup_subdir/*>;
       my @ls;
 
