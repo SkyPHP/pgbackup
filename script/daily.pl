@@ -22,6 +22,8 @@ use Time::Local;
 require "config.pl";
 require "funcs.pl";
 
+exit if $stop_daily_backups;
+
 $db = DBI->connect("DBI:Pg:dbname=$db_name;host=$db_host" . ($db_port?";port=$db_port":''), $db_user, $db_pass, {'RaiseError' => 1}) || die "Unable to connecto to database";
 
 ###############

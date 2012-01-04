@@ -41,6 +41,8 @@ $compress_path = "$backup_path/compressed";
 #################
 ##DAILY CONFIGS##
 
+$stop_daily_backups = 0;
+
 $skip_vacuum = 0;  #slaves can not be vacuumed
 $skip_table_backup = 0;
 
@@ -66,6 +68,8 @@ $daily_file_name_regexp = /^\d\d\d\d\-\d\d\-\d\d/;
 ##FREQUENT CONFIGS##
 
 #NOTE: $db_pass does not apply to frequent.pl, .pgpass is required
+
+$stop_frequent_backups = 0;
 
 $frequent_delete_backups_older_than = 2; #days
 $frequent_max_purge = 50;

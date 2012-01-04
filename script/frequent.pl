@@ -22,6 +22,8 @@ require 'funcs.pl';
 # SCRIPT
 ###############
 
+exit if $stop_frequent_backups;
+
 $delete_backups_older_than = $frequent_delete_backups_older_than;
 $max_purge = $frequent_max_purge;
 
