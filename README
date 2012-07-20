@@ -1,5 +1,0 @@
-Inspect thoroughly the file /script/config.pl to see all configuration options!
-
-Custom configurations should be saved seperately in the file /script/_config.pl , configs from that file will be written on top of /script/config.pl
-
-This collection of scripts is intended to be run as a cron job.  It is preferable to perform daily backups at the times of least load.
