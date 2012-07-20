@@ -30,12 +30,12 @@ You will need to provide a $db_name.  If you are backing up a remote database, y
 If the script is to be executed on a slave node, $skip_vaccum should be set (you can not vaccum slave nodes, only masters).  Inspect /script/config.pl for any less important configurations you would like to override for your particular backup needs.
 
 Set the daily backup script to run in your crontab:
-`0 5 * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl daily.pl >>daily_backup_log`
+`0 5 * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl daily.pl >>daily_backup_log` 
 
 You will need to adjust the paths in the above command if any of them do not match your postgresql and perl installations
 
 If frequent backups are required, set the frequent backup script to run in your crontab:
-`*/15 * * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl frequent.pl >>frequent_backup_log`
+`*/15 * * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl frequent.pl >>frequent_backup_log` 
 
 Adjust any paths if necesary.
 
