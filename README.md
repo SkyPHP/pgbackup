@@ -31,10 +31,12 @@ If the script is to be executed on a slave node, $skip_vaccum should be set (you
 
 Set the daily backup script to run in your crontab:
 `0 5 * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl daily.pl >>daily_backup_log`
+
 You will need to adjust the paths in the above command if any of them do not match your postgresql and perl installations
 
 If frequent backups are required, set the frequent backup script to run in your crontab:
 `*/15 * * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl frequent.pl >>frequent_backup_log`
+
 Adjust any paths if necesary.
 
 It is generally a good idea to run the scripts from the command line at least once to verify that your configuration works as expected before allowing the cron jobs to steal the show.  Silly mistakes can easily be avoided this way.
