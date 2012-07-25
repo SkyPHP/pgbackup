@@ -20,6 +20,13 @@ If `/script/_config.pl` exists, it is run after `/script/config.pl` and overwrit
 For high fidelity backups, be sure to run the scripts at times of low database load.
 
 ###          ###
+# Requirements #
+##           ###
+
+The DBD::Pg Perl module must be installed for these scripts to work.  This can be easily installed via:
+`perl -MCPAN -e "CPAN::Shell->force(qw(install DBD::Pg));"`
+
+###          ###
 # Installation #
 ###          ###
 
@@ -32,7 +39,7 @@ If the script is to be executed on a slave node, `$skip_vaccum` should be set (y
 Set the daily backup script to run in your crontab:
 `0 5 * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl daily.pl >>daily_backup_log` 
 
-You will need to adjust the paths in the above command if any of them do not match your postgresql and perl installations
+You will need to adjust the paths in the above command if any of them do not match your Postgresql and Perl installations
 
 If frequent backups are required, set the frequent backup script to run in your crontab:
 `*/15 * * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl frequent.pl >>frequent_backup_log` 
