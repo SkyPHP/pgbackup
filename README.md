@@ -11,7 +11,7 @@ A collection of scripts for making postgresl database backups.  pgbackup scripts
 *  Keep daily, weekly and monthly backups automatically.
 *  Keep frequent backups of specific tables at intervals of minutes.
 
-For the most convinience, pgbackup should be set up as a cronjob as follows:
+For the most convenience, pgbackup should be set up as a cronjob as follows:
 ```0 5 * * * cd /var/lib/pgsql/9.0/pgbackup/script; /usr/bin/perl daily.pl >>daily_backup_log```
 
 Inspect thoroughly the file `/script/config.pl` to see all configuration options!  Custom configurations should be saved seperately in the file `/script/_config.pl`.
