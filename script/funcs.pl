@@ -277,7 +277,7 @@ sub backup_database{
 sub vacuum{
    unless($skip_vacuum){
       echo("vacuumdb started...");
-      cmd("vacuumdb -a -z -U $db_user -h localhost 2>&1");
+      cmd("su $db_user -c \"vacuumdb -a -z \" 2>&1");
       echo("vacuumdb finished.");
    }else{
       echo("Skipping vacuumdb...");
