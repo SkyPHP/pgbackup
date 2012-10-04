@@ -30,6 +30,8 @@ The DBD::Pg Perl module must be installed for these scripts to work.  This can b
 perl -MCPAN -e "CPAN::Shell->force(qw(install DBD::Pg));"
 ```
 
+You may be asked by CPAN for the path to `pg_config`.  You must provide the path, usually it is something like `/usr/pgsql-9.2/bin/pg_config`.  If you do not have the pg_config binary, you will probably need to install the postgresql devel package.
+
 ###          ###
 # Installation #
 ###          ###
