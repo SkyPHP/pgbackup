@@ -277,7 +277,12 @@ sub backup_database{
 sub vacuum{
    unless($skip_vacuum){
       echo("vacuumdb started...");
-      cmd("vacuumdb -a -z -U $db_user 2>&1");
+     
+      my $vac_cmd = "vacuumdb -a -z";
+
+      my $cmd = "test `whoami` == '$db_user' && $vac_cmd 2>&1 || su $db_user -c \"$vac_cmd\" 2>&1";
+
+      cmd($cmd);
       echo("vacuumdb finished.");
    }else{
       echo("Skipping vacuumdb...");
