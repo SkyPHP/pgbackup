@@ -282,7 +282,7 @@ sub vacuum{
 
       my $cmd = "test `whoami` == '$db_user' && $vac_cmd 2>&1 || su $db_user -c \"$vac_cmd\" 2>&1";
 
-      cmd($vac_cmd);
+      cmd($cmd);
       echo("vacuumdb finished.");
    }else{
       echo("Skipping vacuumdb...");
